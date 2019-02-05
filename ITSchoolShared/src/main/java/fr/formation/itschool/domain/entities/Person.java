@@ -3,22 +3,34 @@ package fr.formation.itschool.domain.entities;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 /**
  * Represents the identity of a physical person with its gender, first and last
  * names; birth date and social security number.
  */
+@Entity
 public class Person extends AbstractEntity {
 
     private static final long serialVersionUID = -8339695911169764830L;
 
+    @Column(length = 15, nullable = false)
     private String socialSecNumber;
 
+    @Column(length = 100, nullable = false)
     private String firstName;
 
+    @Column(length = 100, nullable = false)
     private String lastName;
 
+    @Column(nullable = false)
     private LocalDate birthDate;
 
+    @Column(length = 6, nullable = false)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     /*

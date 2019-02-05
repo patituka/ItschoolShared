@@ -2,17 +2,32 @@ package fr.formation.itschool.domain.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  * Represents a stakeholder with its identity, contact information and status.
  */
+@Entity
 public class Stakeholder extends AbstractEntity {
 
     private static final long serialVersionUID = -1449701680675705536L;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private Person person;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private ContactInfo contactInfo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 7, nullable = false)
     private Status status;
 
     /*

@@ -1,16 +1,27 @@
 package fr.formation.itschool.domain.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  * Represents a partner with its name and contact information.
  */
+@Entity
 public class Partner extends AbstractEntity {
 
-    private static final long serialVersionUID = 523178222700962654L;
+    private static final long serialVersionUID = -4722549274114779913L;
 
+    @Column(length = 100, nullable = false, unique = true)
     private String name;
 
+    @Column(length = 100, nullable = false)
     private String contactName;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false)
     private ContactInfo contactInfo;
 
     /*

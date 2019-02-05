@@ -1,6 +1,7 @@
 package fr.formation.itschool.domain.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 /**
  * Represents an address, defined by its id, road, zip code and city.
@@ -35,7 +36,14 @@ public class Address extends AbstractEntity {
      */
     @Override
     public String toString() {
-	return "{id=" + getId() + ", road=" + road + ", zipCode=" + zipCode
-		+ ", city=" + city + "}";
+	StringBuilder sb = new StringBuilder("id=");
+	sb.append(getId());
+	sb.append(", road=");
+	sb.append(road);
+	sb.append(", zipCode=");
+	sb.append(zipCode);
+	sb.append(", city=");
+	sb.append(city);
+	return sb.toString();
     }
 }
