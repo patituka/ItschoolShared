@@ -1,6 +1,11 @@
 package fr.formation.itschool.domain.entities;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Represents contact information, postal address, mobile phone number and email
@@ -11,7 +16,7 @@ public class ContactInfo extends AbstractEntity {
 
     private static final long serialVersionUID = -7275903852486380147L;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private Address address;
 

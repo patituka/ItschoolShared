@@ -4,10 +4,13 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
@@ -21,7 +24,7 @@ public class Application {
      * The main method running the application.
      *
      * @param args
-     *            the optional method arguments
+     *             the optional method arguments
      * @see SpringApplication#run(Class, String...)
      */
     public static void main(String[] args) {
@@ -61,5 +64,13 @@ public class Application {
 	mapper.registerModule(new JavaTimeModule());
 	mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 	return mapper;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+	ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+	messageSource.setBasename("classpath:messages");
+	messageSource.setDefaultEncoding("UTF-8");
+	return messageSource;
     }
 }
